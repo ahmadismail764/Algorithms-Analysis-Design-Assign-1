@@ -1,4 +1,4 @@
-# Assignment #1
+# Algorithms Analysis & Design - Assignment #1
 ## Task 1: Fibonacci Series
 Define functions to compute the nth Fibonacci number using the below three methods.
 
