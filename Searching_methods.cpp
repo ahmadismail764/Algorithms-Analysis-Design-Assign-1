@@ -68,10 +68,12 @@ int main()
     //    index = Recursive_Sequential_Search(list,7);
 
     //--------------------------------Binary_Search---------------------------------------------------
+    //    sort(list.begin(), list.end());
     //    index = Binary_Search(list, 5);
     //    index = Binary_Search(list, 7);
 
     //--------------------------------Recursive_Binary_Search---------------------------------------------------
+    //     sort(list.begin(), list.end());
     //     index = Recursive_Binary_Search(list,5,1,5);
     //     index = Recursive_Binary_Search(list,7,1,5);
 
