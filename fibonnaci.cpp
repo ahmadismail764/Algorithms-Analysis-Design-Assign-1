@@ -22,7 +22,7 @@ void matrix_power(int F[2][2], int n)
     int M[2][2] = {{1, 1}, {1, 0}};
     matrix_power(F, n / 2);
     matrix_multiplier(F, F);
-    if (n % 2 != 0)
+    if (n % 2)
         matrix_multiplier(F, M); // Multiply by base matrix if n is odd
 }
 int divandconq_fib(int n)
