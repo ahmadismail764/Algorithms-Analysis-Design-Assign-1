@@ -33,7 +33,20 @@ int divandconq_fib(int n)
     matrix_power(F, n - 1);
     return F[0][0];
 }
+
+int dynamic_fib(int n)
+{
+    static int dp_fib[1000] = {-1};
+    if (n <= 1)
+        return n;
+    if (dp_fib[n])
+        return dp_fib[n];
+    dp_fib[n] = dynamic_fib(n - 1) + dynamic_fib(n - 2);
+    return dp_fib[n];
+}
 int main()
 {
-    cout << "Hello world\n";
+    cout << recursive_fib(5) << '\n';
+    cout << divandconq_fib(10) << '\n';
+    cout << dynamic_fib(20) << '\n';
 }
