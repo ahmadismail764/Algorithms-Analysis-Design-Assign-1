@@ -4,6 +4,7 @@ using namespace std;
 template <typename T>
 class Heap
 {
+private:
     vector<T> heap;
     function<bool(T, T)> compare; // Comparison function
 
@@ -25,9 +26,14 @@ class Heap
         int target = index; // Index of the smallest/largest element
 
         if (leftChild < heap.size() && compare(heap[target], heap[leftChild]))
+        {
             target = leftChild;
+        }
         if (rightChild < heap.size() && compare(heap[target], heap[rightChild]))
+        {
             target = rightChild;
+        }
+
         if (target != index)
         {
             swap(heap[index], heap[target]);
@@ -43,6 +49,7 @@ class Heap
 public:
     // Constructor to initialize with a comparison function.
     Heap(function<bool(T, T)> comp) : compare(comp) {}
+
     // Insert a new element into the heap.
     void insert(const T &element)
     {
@@ -55,32 +62,45 @@ public:
     {
         if (heap.empty())
         {
-            cout << "Heap is empty\n";
+            cout << "Heap is empty" << endl;
             return;
         }
 
         heap[0] = heap.back();
         heap.pop_back();
         if (!heap.empty())
+        {
             heapifyDown(0); // Restore heap property if the heap is not empty
+        }
     }
+
     // Get the root element of the heap (e.g., min or max depending on the comparator).
     T top() const
     {
         if (heap.empty())
+        {
             throw runtime_error("Heap is empty");
+        }
         return heap.front();
     }
+
     // Extract and return the minimum element from the heap.
     T extractMin()
     {
         if (heap.empty())
+        {
             throw runtime_error("Heap is empty");
+        }
+
         // Find the minimum element by scanning the heap.
         int minIndex = 0;
         for (int i = 1; i < heap.size(); ++i)
+        {
             if (compare(heap[i], heap[minIndex]))
+            {
                 minIndex = i;
+            }
+        }
 
         // Swap the minimum element with the last element and store its value.
         swap(heap[minIndex], heap.back());
@@ -89,7 +109,10 @@ public:
 
         // Restore the heap property if needed.
         if (minIndex < heap.size())
+        {
             heapifyDown(minIndex);
+        }
+
         return minValue;
     }
     // Build a max heap from an array of elements.
@@ -97,7 +120,9 @@ public:
     {
         heap = elements;
         for (int i = heap.size() / 2 - 1; i >= 0; --i)
+        {
             heapifyDown(i);
+        }
     }
     // Function to sort an array using the heap.
     vector<T> heapSort(const vector<T> &elements)
@@ -110,15 +135,25 @@ public:
             heap[0] = heap.back();
             heap.pop_back();
             if (!heap.empty())
+            {
                 heapifyDown(0);
+            }
         }
         reverse(sortedArray.begin(), sortedArray.end());
         return sortedArray;
     }
+
     // Check if the heap is empty.
-    bool empty() const { return heap.empty(); }
+    bool empty() const
+    {
+        return heap.empty();
+    }
+
     // Get the current size of the heap.
-    int getSize() const { return heap.size(); }
+    int getSize() const
+    {
+        return heap.size();
+    }
 };
 
 // Compare function to determine priority (for a min-heap or max-heap)
@@ -131,18 +166,31 @@ bool comparePQ(const pair<int, T> &a, const pair<int, T> &b)
 template <typename T>
 class PriorityQueue
 {
+private:
     Heap<pair<int, T>> heap;
 
 public:
     // Constructor to initialize the priority queue with a comparator
     PriorityQueue(function<bool(const pair<int, T> &, const pair<int, T> &)> comp)
         : heap(comp) {}
+
     // Insert an element with a given priority
-    void insert(int priority, const T &value) { heap.insert({priority, value}); }
+    void insert(int priority, const T &value)
+    {
+        heap.insert({priority, value});
+    }
+
     // Extract the element with the highest priority
-    pair<int, T> extractMax() { heap.extractMax(); }
+    pair<int, T> extractMax()
+    {
+        heap.extractMax();
+    }
+
     // Get the element with the highest priority without removing it
-    pair<int, T> top() { return heap.top(); }
+    pair<int, T> top()
+    {
+        return heap.top();
+    }
 };
 int main()
 {
@@ -157,7 +205,7 @@ int main()
     h.insert(30);
     h.insert(15);
     h.insert(35);
-    cout << "Top element: " << h.top() << '\n';
+    cout << "Top element: " << h.top() << endl;
     h.extractMax();
     cout << "Top element after extracting max: " << h.top() << '\n';
     h.extractMin();
